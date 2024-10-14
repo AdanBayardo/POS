@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import productsRoutes from './src/routes/productsRoutes.mjs';
 import userRoutes from './src/routes/userRoutes.mjs';
+import authRoutes from './src/routes/authRoutes.mjs';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 app.use('/api', productsRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
 // Error handling middleware

@@ -1,4 +1,4 @@
-import { Product } from '../models/Product';
+import { IProduct } from '../types/Product';
 
 
 export async function getProducts(): Promise<IProduct[]> {

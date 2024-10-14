@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import userController from '../controllers/userController.mjs';
+import authMiddleware from '../middleware/authMiddleware.mjs';
 
 const userRoutes = Router();
 
 userRoutes
-  .route('/users')
-  .get(userController.getUsers)
-  .post(userController.createUser);
+  .route('/')
+  .get(authMiddleware, userController.getUsers);
 userRoutes
   .route('/:userId')
-  .get(userController.getUserById)
-  .put(userController.updateUser)
-  .delete(userController.deleteUser);
+  .get(authMiddleware, userController.getUserById)
+  .put(authMiddleware, userController.updateUser)
+  .delete(authMiddleware, userController.deleteUser);
 
 export default userRoutes;

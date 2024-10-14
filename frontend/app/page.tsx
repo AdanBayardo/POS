@@ -1,38 +1,17 @@
 'use client';
 import { useState } from "react";
-import { ProductGrid } from "../components/ProductGrid";
-import { Ticket } from "../components/Ticket";
-
-
-interface TicketItem {
-  name: string;
-  quantity: number;
-  price: number;
-}
+import { ProductGrid } from "../components/products/ProductList";
+import { Ticket } from "../components/tickets/Ticket";
+import { TicketItem } from "../types/Ticket";
 
 export default function Home() {
   const [ticketItems, setTicketItems] = useState<TicketItem[]>([]);
 
-  const handleAddToTicket = (product: TicketItem) => {
-    setTicketItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.name === product.name);
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.name === product.name
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prevItems, { ...product, quantity: 1 }];
-    });
-  };
-
   return (
     <div>
-     
-      <div className="pt-16 flex"> {/* Add padding to top */}
+      <div className="pt-16 flex">
         <div className="w-2/3">
-          <ProductGrid onAddToTicket={handleAddToTicket} />
+          <ProductGrid onAddToTicket={(product) => Ticket.addToTicket(product, setTicketItems)} />
         </div>
         <div className="w-1/3">
           <Ticket items={ticketItems} />
@@ -41,5 +20,3 @@ export default function Home() {
     </div>
   );
 }
-
-

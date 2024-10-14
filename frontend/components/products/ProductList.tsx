@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { IProduct } from '../models/Product';
+import { IProduct } from '../../types/Product';
 
 interface ProductGridProps {
   onAddToTicket: (product: IProduct) => void;

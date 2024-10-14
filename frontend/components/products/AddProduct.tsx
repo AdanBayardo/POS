@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { IProduct } from '@/models/Product';
+import { IProduct } from '../../types/Product';
 import { deleteProduct as deleteProductService, getProducts } from '@/services/productService';
 
 export default function AddProduct() {

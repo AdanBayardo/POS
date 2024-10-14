@@ -1,14 +1,4 @@
-import { useState } from "react";
-
-interface TicketItem {
-  name: string;
-  quantity: number;
-  price: number;
-}
-
-interface TicketProps {
-  items: TicketItem[];
-}
+import { TicketProps, TicketItem } from "../../types/Ticket";
 
 export function Ticket({ items }: TicketProps) {
   const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -28,3 +18,16 @@ export function Ticket({ items }: TicketProps) {
     </div>
   );
 }
+
+Ticket.addToTicket = (product: TicketItem, setTicketItems: React.Dispatch<React.SetStateAction<TicketItem[]>>) => {
+  setTicketItems((prevItems) => {
+    const existingItem = prevItems.find((item) => item.name === product.name);
+    if (existingItem) {
+      return prevItems.map((item) =>
+        item.name === product.name ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    } else {
+      return [...prevItems, { ...product, quantity: 1 }];
+    }
+  });
+};

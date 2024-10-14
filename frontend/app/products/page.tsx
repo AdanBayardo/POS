@@ -1,5 +1,5 @@
 'use client'
-import AddProduct from '../../components/AddProduct';
+import AddProduct from '../../components/products/AddProduct';
 
 export default function AddProductPage() {
   const handleSave = async (item: Record<string, any>) => {
